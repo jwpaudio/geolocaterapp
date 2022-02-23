@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>GeoLocater</title>
+</head>
+<body>
+  <script>
+    var map;
+    function initMap() {
+        // The location of Uluru
+        const map_position = { lat: 45.0, lng: 0.0 };
+        // The map, centered at Uluru
+        let map = new google.maps.Map(document.getElementById("map"), {
+            center: map_position,
+            zoom: 2,
+        });
+    }
+    function getLocation(){
+        if ('geolocation' in navigator) {
+            console.log('geolocation available');
+            navigator.geolocation.getCurrentPosition(position  => {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+                document.getElementById('latitude').textContent = lat + "\u00B0";
+                document.getElementById('longitude').textContent = lon + "\u00B0";
+                console.log(position);
+                
+                const map_position = { lat: lat, lng: lon };
+                let map = new google.maps.Map(document.getElementById("map"), {
+                center: map_position,
+                zoom: 12,
+                });
+                // The marker, positioned at users location
+                const marker = new google.maps.Marker({
+                position: map_position,
+                map: map,
+                });
+            });
+        } else {
+            console.log('geolocation not available')
+        }
+    }
+    </script>
+        <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_MQ-rmdAfcOz0t90tRhWH3PGUH-7j2TA&callback=initMap&libraries=&v=weekly"
+        async
+      ></script>
+    <h1>GeoLocater</h1>
+    <div class="lat_lon_container">
+        <div class="horizontal_flexbox">
+            <div class="lat_lon">Latitude:</div>
+            <div id="latitude"></div>
+        </div>
+        <div class="horizontal_flexbox">
+            <div class="lat_lon">Longitude:</div>
+            <div id="longitude"></div>
+        </div>
+        <input type="button" onclick="getLocation()" id="get_lat_lon_button" value="Get Location">
+    </div>
+    <div id="map"></div>
+</body>
+</html>

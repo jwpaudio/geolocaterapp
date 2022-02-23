@@ -1,0 +1,82 @@
+html, body {
+    height: 100%;
+    margin: 0px;
+}
+body {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
+    padding-top: 10vh;
+    padding-bottom: 20vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: top;
+    background-image:url(http://bit.ly/2gPLxZ4);
+    font-family: Arial, Helvetica;
+    color: white;
+    letter-spacing: 0.02em;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased; 
+   
+}
+.lat_lon_container {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    border-radius: 15px;
+    flex: 0 1 auto;
+    padding: 5vh 8vw 5vh 8vw;
+}
+.horizontal_flexbox {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex: 0 1 auto;
+    padding: 0.5vh 0vw 0.5vh 0vw;
+
+}
+.flexbox {
+    text-align: center;
+    font-size: large;
+}
+.lat_lon {
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+    padding-right: 5px;
+}
+#get_lat_lon_button {
+    margin-top: 3vh;
+    display: inline-block;
+    padding: 0.75vh 3vh;
+    border: 0.1em solid #FFFFFF;
+    border-radius: 0.12em;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: #FFFFFF;
+    background: none;
+    text-align: center;
+    transition: all 0.2s;
+}
+#get_lat_lon_button:hover {
+    color: #000000;
+    background-color: #FFFFFF;
+}
+#map {
+    height: 400px;
+    /* The height is 400 pixels */
+    width: 50vw;
+    /* The width is the width of the web page */
+  }
