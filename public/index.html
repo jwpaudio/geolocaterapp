@@ -9,35 +9,32 @@
 </head>
 <body>
   <script>
-    var map;
-    function initMap() {
-        // The location of Uluru
+    window.initMap = function () {
+        // Starting map position (middle of the atlantic)
         const map_position = { lat: 45.0, lng: 0.0 };
-        // The map, centered at Uluru
-        let map = new google.maps.Map(document.getElementById("map"), {
+        // The map, centered on the atlantic ocean
+        const userMap = new google.maps.Map(document.getElementById("map"), {
             center: map_position,
             zoom: 2,
         });
     }
+    //Get the users location
     function getLocation(){
         if ('geolocation' in navigator) {
             console.log('geolocation available');
             navigator.geolocation.getCurrentPosition(position  => {
+                //Callback function that gets the lat and lon and passes to the google map
                 const lat = position.coords.latitude;
                 const lon = position.coords.longitude;
                 document.getElementById('latitude').textContent = lat + "\u00B0";
                 document.getElementById('longitude').textContent = lon + "\u00B0";
                 console.log(position);
                 
-                const map_position = { lat: lat, lng: lon };
-                let map = new google.maps.Map(document.getElementById("map"), {
-                center: map_position,
-                zoom: 12,
-                });
-                // The marker, positioned at users location
+                //Update the map with the users location and add a marker
                 const marker = new google.maps.Marker({
                 position: map_position,
-                map: map,
+                zoom: 12,
+                map: userMap,
                 });
             });
         } else {
