@@ -10,8 +10,8 @@ body {
     text-align: center;
     justify-content: space-evenly;
     flex-wrap: nowrap;
-    padding-top: 10vh;
-    padding-bottom: 20vh;
+    padding-top: 5vh;
+    padding-bottom: 15vh;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -75,7 +75,7 @@ body {
     background-color: #FFFFFF;
 }
 #map {
-    height: 400px;
+    height: 30vh;
     /* The height is 400 pixels */
     width: 50vw;
     /* The width is the width of the web page */
