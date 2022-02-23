@@ -9,14 +9,15 @@
 </head>
 <body>
   <script>
-    window.initMap = function () {
+    function initMap () {
         // Starting map position (middle of the atlantic)
         const map_position = { lat: 45.0, lng: 0.0 };
         // The map, centered on the atlantic ocean
-        const userMap = new google.maps.Map(document.getElementById("map"), {
+        userMap = new google.maps.Map(document.getElementById("map"), {
             center: map_position,
             zoom: 2,
         });
+        window.globalUserMap = userMap;
     }
     //Get the users location
     function getLocation(){
@@ -29,13 +30,33 @@
                 document.getElementById('latitude').textContent = lat + "\u00B0";
                 document.getElementById('longitude').textContent = lon + "\u00B0";
                 console.log(position);
-                
+                console.log(globalUserMap);
+
+                //Create map_position object with received lat and lon
+                const map_position = { lat: lat, lng: lon }
+
                 //Update the map with the users location and add a marker
                 const marker = new google.maps.Marker({
                 position: map_position,
-                zoom: 12,
-                map: userMap,
+                map: globalUserMap,
                 });
+                globalUserMap.setCenter(map_position)
+
+                smoothZoom(globalUserMap, 12, globalUserMap.getZoom()); 
+                
+                //Animate zoom into users position
+                function smoothZoom (map, max, cnt) {
+                    if (cnt >= max) {
+                        return;
+                    }
+                    else {
+                        z = google.maps.event.addListener(map, 'zoom_changed', function(event){
+                            google.maps.event.removeListener(z);
+                            smoothZoom(map, max, cnt + 1);
+                        });
+                        setTimeout(function(){map.setZoom(cnt)}, 175);
+                    }
+                }  
             });
         } else {
             console.log('geolocation not available')
